@@ -9,6 +9,10 @@
     min-width: 350px;
     border-radius: 10px;
 
+    box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
+
     .form{
         display: flex;
         flex-direction: column;

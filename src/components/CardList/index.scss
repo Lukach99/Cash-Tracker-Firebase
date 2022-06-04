@@ -2,6 +2,8 @@
 
 .card-list{
     flex: 2;
+    height: 500px;
+    overflow: auto;
     display: grid;
     grid-template-columns: 220px 220px 220px;
     row-gap: 20px;

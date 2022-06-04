@@ -1,0 +1,95 @@
+{
+  "expenses": [
+    {
+      "id": 0,
+      "type": "Režije",
+      "overview": "Voda, struja ...",
+      "price": "500",
+      "date": "15.6.2022"
+    },
+    {
+      "id": 1,
+      "type": "Hrana",
+      "overview": "Kruh, Voće ...",
+      "price": "100",
+      "date": "10.6.2022"
+    },
+    {
+      "id": 2,
+      "type": "Ostalo",
+      "overview": "Gorivo, kave ...",
+      "price": "1000",
+      "date": "20.6.2022"
+    },
+    {
+      "id": 3,
+      "type": "Režije",
+      "overview": "Voda, struja ...",
+      "price": "500",
+      "date": "15.6.2022"
+    },
+    {
+      "id": 4,
+      "type": "Hrana",
+      "overview": "Kruh, Voće ...",
+      "price": "100",
+      "date": "10.6.2022"
+    },
+    {
+      "id": 5,
+      "type": "Ostalo",
+      "overview": "Gorivo, kave ...",
+      "price": "1000",
+      "date": "20.6.2022"
+    },
+    {
+      "type": "Režije",
+      "overview": "fwefw",
+      "date": "2022-06-08",
+      "price": "300",
+      "id": 6
+    },
+    {
+      "type": "Režije",
+      "overview": "wfew",
+      "date": "2022-06-15",
+      "price": "300",
+      "id": 7
+    },
+    {
+      "type": "Režije",
+      "overview": "wfew",
+      "date": "2022-06-15",
+      "price": "300",
+      "id": 8
+    },
+    {
+      "type": "Režije",
+      "overview": "wfew",
+      "date": "2022-06-15",
+      "price": "300",
+      "id": 9
+    },
+    {
+      "type": "Režije",
+      "overview": "wfew",
+      "date": "2022-06-15",
+      "price": "300",
+      "id": 10
+    },
+    {
+      "type": "Režije",
+      "overview": "edwew",
+      "date": "2022-06-13",
+      "price": "300",
+      "id": 11
+    },
+    {
+      "type": "Režije",
+      "overview": "testing",
+      "date": "2022-06-13",
+      "price": "300",
+      "id": 12
+    }
+  ]
+}

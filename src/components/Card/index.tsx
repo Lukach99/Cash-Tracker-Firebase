@@ -1,12 +1,17 @@
+import { TExpense } from "../../models/expense.model"
 import "./index.scss"
 
-const Card = () => { 
+const Card = ({expense}: Props) => { 
     return <article className="card">
-        <h3>Režije</h3>
-        <p>Voda, struja ...</p>
-        <p>500 Kn</p>
-        <p>15.6.2022</p>
+        <h3>{expense.type}</h3>
+        <p>{expense.overview}</p>
+        <p>{`${expense.price} Kn`}</p>
+        <p>{expense.date} </p>
     </article>
  }
 
+
+type Props={
+    expense: TExpense
+}
 export default Card
