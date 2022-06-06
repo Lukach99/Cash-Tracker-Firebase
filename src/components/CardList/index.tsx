@@ -18,11 +18,12 @@ const CardList = () => {
         const data = await expensesHttp.getExpenses()
         setTest(data)
       },
-      [setTest],
+      [expensesHttp],
     )
 
     useEffect(() => {
-      fetchExpenses()  
+      fetchExpenses() 
+      console.log("fetched") 
     }, [fetchExpenses])
     
     

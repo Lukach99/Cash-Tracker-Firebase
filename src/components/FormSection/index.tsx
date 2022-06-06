@@ -3,7 +3,8 @@ import Select from 'react-select'
 import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
 import ExpensesHttp from "../../http/expenses.http";
-import { TExpense } from "../../models/expense.model";
+import { Expense, TExpense } from "../../models/expense.model";
+import { useForm } from "react-hook-form";
 
 const options = [
   { value: 'Hrana', label: 'Hrana' },
@@ -12,56 +13,47 @@ const options = [
 ]
 
 const FormSection = () => { 
-
+    const {register, handleSubmit, getValues, reset, resetField,
+        formState: { isSubmitSuccessful, errors }} = useForm()
     const { test, setTest } = useContext(ExpensesContext);
-    const [newExpense, setNewExpense] = useState<any>({})
 
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
 
+    
     const addExpenses = useCallback(
       async (expense: TExpense) => {
         const data = await expensesHttp.createExpense(expense)
-        console.log(data)
-        setNewExpense(data)
-        fetchExpenses()
+        setTest(await expensesHttp.getExpenses())
       },
-      [expensesHttp],
+      [expensesHttp,setTest],
     )
 
+    const onSubmit = (event:any) => {
+       const newExpense: any = getValues()
+       console.log(newExpense)
+      
+        addExpenses(newExpense)
 
-    const fetchExpenses = useCallback(
-        async () => {
-          const data = await expensesHttp.getExpenses()
-          setTest(data)
-        },
-        [setTest],
-      )
-  
-    /* useEffect(() => {
-      addExpenses()  
-    }, [fetchExpenses]) */
-
-
-    const handleSubmit = (event:any) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        const value: any = Object.fromEntries(data.entries());
-        addExpenses(value)
-        console.log(newExpense)
-        /* console.log(testing) */
       };
 
+      useEffect(() => {
+        if (isSubmitSuccessful) {
+          reset();
+        }
+      }, [isSubmitSuccessful, reset]);
+
     return <section className="form-section">
-        <form action="" name="test" className="form" onSubmit={handleSubmit}>
-            <select name="type" required className="input-select">
+        <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
+            <select {...register("type")} required className="input-select">
                 <option defaultValue={test} value="test" hidden>Tip potrošnje</option>
                 <option value="Hrana">Hrana</option>
                 <option value="Režije">Režije</option>
                 <option value="Ostalo">Ostalo</option>
             </select>
-            <textarea name="overview" id="" className="textarea"  placeholder="Message"></textarea>
-            <input type="date" name="date" id="" />
-            <input type="text" name="price" placeholder="Cijena" />
+            <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
+            <input type="date" {...register("date",{ required: true})} id="" />
+            <input type="text" {...register("price",{ required: true, pattern: /^[0-9]*$/ })} placeholder="Cijena" />
+            {errors.price && <p>Please enter number</p>}
             <button type="submit">Dodaj</button>
         </form>
     </section>
