@@ -22,12 +22,18 @@ class ExpensesHttp extends HttpClient{
         return new Expense(data);
       }
 
-      public async deleteExpense(id: number | undefined): Promise<Object> {
+    public async deleteExpense(id: number | undefined): Promise<Object> {
         const { data } = await axios.delete(this.url(`/expenses/${id}`));
     
         return data;
       }
 
+    public async updateExpense(id: number, body: any): Promise<Expense> {
+        const { data } = await axios.patch(this.url(`/expenses/${id}`), body);
+    
+        return new Expense(data);
+      }
+    
 }
 
 export default ExpensesHttp

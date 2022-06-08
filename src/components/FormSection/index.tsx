@@ -12,7 +12,7 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' }
 ]
 
-const FormSection = () => { 
+const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => { 
     const {register, handleSubmit, getValues, reset, resetField,
         formState: { isSubmitSuccessful, errors }} = useForm()
     const { test, setTest } = useContext(ExpensesContext);
@@ -28,17 +28,42 @@ const FormSection = () => {
       [expensesHttp,setTest],
     )
 
+    const updateExpenses = useCallback(
+        async (expense: TExpense) => {
+          const data = await expensesHttp.updateExpense(idCard,expense)
+          setTest(await expensesHttp.getExpenses())
+        },
+        [expensesHttp,setTest],
+      )
+  
+
     const onSubmit = (event:any) => {
-       const newExpense: any = getValues()
-       console.log(newExpense)
-      
-        addExpenses(newExpense)
+
+        if(isEditPage){
+            const newExpense: any = getValues()
+            console.log(newExpense)
+            
+            updateExpenses(newExpense)
+            document.body.style.overflow = "";
+            closeEdit(false)
+        
+        } else{
+            const newExpense: any = getValues()
+            console.log(newExpense)
+           
+             addExpenses(newExpense)
+        }
+       
 
       };
 
       useEffect(() => {
         if (isSubmitSuccessful) {
           reset();
+        }
+
+        if(isEditPage){
+            reset(prefill)
         }
       }, [isSubmitSuccessful, reset]);
 
@@ -57,6 +82,13 @@ const FormSection = () => {
             <button type="submit">Dodaj</button>
         </form>
     </section>
+ }
+
+ type Props = {
+     idCard?: any;
+     isEditPage?: boolean;
+     prefill?: TExpense;
+     closeEdit?: any;
  }
 
 export default FormSection
