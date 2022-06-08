@@ -1,3 +1,53 @@
 {
-  "expenses": []
+  "expenses": [
+    {
+      "type": "Hrana",
+      "overview": "banane",
+      "date": "2022-06-17",
+      "price": "10",
+      "id": 2
+    },
+    {
+      "type": "Ostalo",
+      "overview": "fefrffsf",
+      "date": "2022-06-21",
+      "price": "400",
+      "id": 3
+    },
+    {
+      "type": "Hrana",
+      "overview": "banane",
+      "date": "2022-06-22",
+      "price": "23",
+      "id": 4
+    },
+    {
+      "type": "Hrana",
+      "overview": "kruh, ulje",
+      "date": "2022-06-29",
+      "price": "30",
+      "id": 5
+    },
+    {
+      "type": "Režije",
+      "overview": "test2",
+      "date": "2022-06-15",
+      "price": "300",
+      "id": 6
+    },
+    {
+      "type": "Režije",
+      "overview": "cdd",
+      "date": "2022-06-22",
+      "price": "200",
+      "id": 7
+    },
+    {
+      "type": "Režije",
+      "overview": "struja",
+      "date": "2022-06-29",
+      "price": "200",
+      "id": 8
+    }
+  ]
 }
