@@ -6,6 +6,9 @@ import ExpensesHttp from "../../http/expenses.http";
 import { Expense, TExpense } from "../../models/expense.model";
 import { useForm } from "react-hook-form";
 
+import {ExpenseType} from "../../constants/generic.enums";
+import { EnumDeclaration, EnumType } from "typescript";
+
 const options = [
   { value: 'Hrana', label: 'Hrana' },
   { value: 'Režije', label: 'Režije' },
@@ -71,9 +74,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => {
         <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
             <select {...register("type")} required className="input-select">
                 <option defaultValue={test} value="test" hidden>Tip potrošnje</option>
-                <option value="Hrana">Hrana</option>
-                <option value="Režije">Režije</option>
-                <option value="Ostalo">Ostalo</option>
+                {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{ExpenseType[key as keyof typeof ExpenseType]}</option> )}
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
             <input type="date" {...register("date",{ required: true})} id="" />

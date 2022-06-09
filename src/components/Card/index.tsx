@@ -13,6 +13,7 @@ import ConfirmationModal from "../ConfirmationModal";
 import OverviewEditModal from "../OverviewModal";
 import FormSection from "../FormSection";
 import EditModal from "../EditModal";
+import {ExpenseType} from "../../constants/generic.enums";
 
 const Card = ({expense}: Props) => { 
 
@@ -86,8 +87,9 @@ const Card = ({expense}: Props) => {
           </EditModal>
     )}
         <article className="card" onClick={openOverviewModal}>
-            
-            <h3>{expense.type}</h3>
+        <FontAwesomeIcon icon={faXmark} className="card-delete" onClick={openModal} ></FontAwesomeIcon>
+
+            <h3>{ExpenseType[expense.type as keyof typeof ExpenseType]}</h3>
         <p>{expense.overview}</p>
         <p>{`${expense.price} Kn`}</p>
         <p>{expense.date} </p>

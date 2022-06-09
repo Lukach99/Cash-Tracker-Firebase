@@ -1,0 +1,36 @@
+.total{
+    width: 70%;
+}
+
+.total-amounts{
+    display: flex;
+    justify-content: space-around;
+
+    &__rest{
+        display: flex;
+        flex-wrap: wrap;
+        width: 60%;
+        justify-content: space-around;
+
+       
+    }
+}
+
+table{
+    border-spacing: 0;
+    td{
+        padding: 10px;
+        border-right: 2px solid black;
+        
+    }
+
+    tr:nth-child(even){
+        background-color: rgb(180, 180, 180);
+    }
+
+    td:last-child{
+        border-right: none
+    }
+
+    
+}
