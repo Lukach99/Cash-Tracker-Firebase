@@ -8,7 +8,7 @@ const ExpensePage = () => {
             <CardList></CardList>
             <FormSection></FormSection>
         
-    </>
+            </>
 }
 
 export default ExpensePage

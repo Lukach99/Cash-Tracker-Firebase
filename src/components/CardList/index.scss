@@ -3,10 +3,17 @@
 .card-list{
     flex: 2;
     height: 500px;
-    overflow: auto;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
     display: grid;
     grid-template-columns: 220px 220px 220px;
     row-gap: 20px;
     justify-content: center;
     align-items: flex-start;
+}
+
+.card-list::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
