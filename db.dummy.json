@@ -1,32 +1,11 @@
 {
   "expenses": [
     {
-      "type": "Rest",
-      "overview": "fefrffsf",
-      "date": "2022-06-21",
-      "price": "400",
-      "id": 3
-    },
-    {
-      "type": "Food",
-      "overview": "jabuka",
-      "date": "2022-06-22",
-      "price": "10",
-      "id": 4
-    },
-    {
       "type": "Food",
       "overview": "kruh, ulje",
       "date": "2022-06-29",
       "price": "30",
       "id": 5
-    },
-    {
-      "type": "Utilities",
-      "overview": "test2",
-      "date": "2022-06-15",
-      "price": "500",
-      "id": 6
     },
     {
       "type": "Utilities",
@@ -62,6 +41,20 @@
       "date": "2022-03-17",
       "price": "10",
       "id": 11
+    },
+    {
+      "type": "Fuel",
+      "overview": "Test",
+      "date": "2022-06-29",
+      "price": "200",
+      "id": 12
+    },
+    {
+      "type": "Rest",
+      "overview": "odjeca",
+      "date": "2022-06-22",
+      "price": "400",
+      "id": 13
     }
   ]
 }

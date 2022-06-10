@@ -74,7 +74,7 @@ const ExpensesOverview = () => {
                                 <tr>
                                 <td>{type}</td>
                                 {Object.keys(MonthList).map((key) => 
-                                    <td>{totalAmountInMonth(+key, type) } Kn </td> )} 
+                                    <td>{totalAmountInMonth(+key, type)} Kn </td> )} 
                                     </tr>   
                             )
                         }

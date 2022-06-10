@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faEdit,
+    faTrash,
     faXmark
   } from "@fortawesome/free-solid-svg-icons";
 import { TExpense } from "../../models/expense.model"
@@ -49,12 +50,11 @@ const Card = ({expense}: Props) => {
 
         await expensesHttp.deleteExpense(id)
         setTest(newExpenses)
+        if(isOverviewModalActive){
+            setIsOverviewModalActive(false)
+        }
         console.log("deleted")
     }
-
-    /* const onSubmit =async () => {
-        await expensesHttp.updateExpense(id,)
-    } */
 
     return <>
     {isModalActive && (
@@ -67,38 +67,39 @@ const Card = ({expense}: Props) => {
           <p>Are you sure you want to delete {expense.type}?</p>
         </ConfirmationModal>
       )}
-      {isOverviewModalActive && (
-        <OverviewEditModal
-          onConfirm={deleteHandler}
-          stateHandler={setIsOverviewModalActive}
-        
-        >
-          
 
-          <h3>{expense.type}</h3>
-        <p>{expense.overview}</p>
-        <p>{`${expense.price} Kn`}</p>
-        <p>{expense.date} </p>
-        <FontAwesomeIcon icon={faEdit} className="card-delete" onClick={openEdit} ></FontAwesomeIcon>
-        </OverviewEditModal>
-      )} {isEditModalActive && (
+        {isOverviewModalActive && (
+            <OverviewEditModal
+                onConfirm={deleteHandler}
+                stateHandler={setIsOverviewModalActive}
+            >
+                <h3>{expense.type}</h3>
+                <p>{expense.overview}</p>
+                <p>{`${expense.price} Kn`}</p>
+                <p>{expense.date} </p>
+                <div>
+                    <FontAwesomeIcon icon={faEdit} size={"lg"} className="card-delete" onClick={openEdit} ></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faTrash} size={"lg"} className="card-delete" onClick={deleteHandler} ></FontAwesomeIcon>
+                </div>
+                
+            </OverviewEditModal>
+        )} 
+      
+        {isEditModalActive && (
           <EditModal stateHandler={setIsEditModalActive} prefill={expense} >
                 
           </EditModal>
-    )}
-        <article className="card" onClick={openOverviewModal}>
-        <FontAwesomeIcon icon={faXmark} className="card-delete" onClick={openModal} ></FontAwesomeIcon>
+        )}
 
-            <h3>{ExpenseType[expense.type as keyof typeof ExpenseType]}</h3>
-        <p>{expense.overview}</p>
-        <p>{`${expense.price} Kn`}</p>
-        <p>{expense.date} </p>
-        
-    </article>
+        <article className="card" onClick={openOverviewModal}>
+            <FontAwesomeIcon icon={faXmark} className="card-del" onClick={openModal} ></FontAwesomeIcon>
+                <h3>{ExpenseType[expense.type as keyof typeof ExpenseType]}</h3>
+                <p>{expense.overview}</p>
+                <p>{`${expense.price} Kn`}</p>
+                <p>{expense.date} </p>
+        </article>
     </>
-    
-    
- }
+}
 
 
 type Props={
