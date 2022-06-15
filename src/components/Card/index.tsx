@@ -1,47 +1,37 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faEdit,
-    faTrash,
     faXmark
   } from "@fortawesome/free-solid-svg-icons";
 import { TExpense } from "../../models/expense.model"
 import "./index.scss"
 import ExpensesHttp from "../../http/expenses.http";
-import { useCallback, useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
-import axios from "axios";
-import ConfirmationModal from "../ConfirmationModal";
-import OverviewEditModal from "../OverviewModal";
-import FormSection from "../FormSection";
-import EditModal from "../EditModal";
 import {ExpenseType} from "../../constants/generic.enums";
+import ModalView from "../Modals";
+import DeleteM from "../Modals/DeleteModal";
+import OverviewM from "../Modals/OverviewModal";
 
 const Card = ({expense}: Props) => { 
 
     const { test, setTest } = useContext(ExpensesContext);
     const [isModalActive, setIsModalActive] = useState(false);
+    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
     const [isOverviewModalActive, setIsOverviewModalActive] = useState(false);
-    const [isEditModalActive, setIsEditModalActive] = useState(false);
    
-
     const {id,type, overview, price, date} = expense
 
     const expensesHttp = useMemo(() => new ExpensesHttp, [])
 
-    const openModal:any = (event: MouseEvent) => {
+    const openDeleteModal:any = (event: MouseEvent) => {
         event.stopPropagation();
         setIsModalActive(true);
+        setIsDeleteModalActive(true)
       };
 
-      const openEdit:any = (event: MouseEvent) => {
+    const openOverviewModal:any = (event: MouseEvent) => {
         event.stopPropagation();
-        setIsEditModalActive(true)
-        setIsOverviewModalActive(false)
-    }
-
-     
-      const openOverviewModal:any = (event: MouseEvent) => {
-        event.stopPropagation();
+        setIsModalActive(true);
         setIsOverviewModalActive(true);
       };
 
@@ -57,50 +47,31 @@ const Card = ({expense}: Props) => {
     }
 
     return <>
-    {isModalActive && (
-        <ConfirmationModal
-          onConfirm={deleteHandler}
-          stateHandler={setIsModalActive}
+      {isModalActive && (
+        <ModalView onConfirm={undefined} 
+              stateHandler={setIsModalActive}
+              isDelete={setIsDeleteModalActive}    
+              isOverview={setIsOverviewModalActive}
         >
-          <h2>Delete contact</h2>
+          {/* Delete Modal */}
+          {isDeleteModalActive && <DeleteM expense={expense} onConfirm={deleteHandler} stateHandler={setIsModalActive} isDeleteState={setIsDeleteModalActive}></DeleteM>}
 
-          <p>Are you sure you want to delete {expense.type}?</p>
-        </ConfirmationModal>
+          {/* Overview and Edit Modal */}
+          {isOverviewModalActive && <OverviewM expense={expense} deleteHandler={deleteHandler} stateHandler={setIsModalActive} isOverviewActive={setIsOverviewModalActive}></OverviewM>}
+
+        </ModalView>
+
       )}
-
-        {isOverviewModalActive && (
-            <OverviewEditModal
-                onConfirm={deleteHandler}
-                stateHandler={setIsOverviewModalActive}
-            >
-                <h3>{expense.type}</h3>
-                <p>{expense.overview}</p>
-                <p>{`${expense.price} Kn`}</p>
-                <p>{expense.date} </p>
-                <div>
-                    <FontAwesomeIcon icon={faEdit} size={"lg"} className="card-delete" onClick={openEdit} ></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faTrash} size={"lg"} className="card-delete" onClick={deleteHandler} ></FontAwesomeIcon>
-                </div>
-                
-            </OverviewEditModal>
-        )} 
-      
-        {isEditModalActive && (
-          <EditModal stateHandler={setIsEditModalActive} prefill={expense} >
-                
-          </EditModal>
-        )}
-
-        <article className="card" onClick={openOverviewModal}>
-            <FontAwesomeIcon icon={faXmark} className="card-del" onClick={openModal} ></FontAwesomeIcon>
-                <h3>{ExpenseType[expense.type as keyof typeof ExpenseType]}</h3>
-                <p>{expense.overview}</p>
-                <p>{`${expense.price} Kn`}</p>
-                <p>{expense.date} </p>
-        </article>
+        
+      <article className="card" onClick={openOverviewModal}>
+          <FontAwesomeIcon icon={faXmark} className="card-del" onClick={openDeleteModal} ></FontAwesomeIcon>
+              <h3>{ExpenseType[type as keyof typeof ExpenseType]}</h3>
+              <p>{overview}</p>
+              <p>{`${price} Kn`}</p>
+              <p>{date} </p>
+      </article>
     </>
 }
-
 
 type Props={
     expense: TExpense

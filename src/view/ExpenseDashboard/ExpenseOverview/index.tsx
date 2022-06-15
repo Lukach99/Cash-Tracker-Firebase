@@ -4,11 +4,9 @@ import { ExpensesContext } from "../../../contex/expenses.contex";
 import ExpensesHttp from "../../../http/expenses.http";
 import { TExpense } from "../../../models/expense.model";
 import "./index.scss"
+
 const ExpensesOverview = () => { 
     const { test, setTest } = useContext(ExpensesContext);
-
-    
-
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
 
     const fetchExpenses = useCallback(
@@ -24,15 +22,9 @@ const ExpensesOverview = () => {
             fetchExpenses()
             console.log(test)
         }
-        /* fetchExpenses() */ 
-      console.log("fetched") 
-    }, [fetchExpenses,test]) 
-    
-    /* if(!test){
-        fetchExpenses()
-        console.log("fetched")
-    } */
 
+    }, [fetchExpenses,test]) 
+  
     const totalAmount = () => {
         let amount = 0
 
@@ -47,9 +39,7 @@ const ExpensesOverview = () => {
         return amount
     }
 
-    /* const date = new Date(test[0].date).getMonth() */
-
-    const totalAmountInMonth = (month: number, expenseType: string) => {
+    const byTypeAmountInMonth = (month: number, expenseType: string) => {
 
         const listMonth = test.filter((expense: TExpense) => new Date(expense.date).getMonth() === month)
         const listByType = listMonth.filter((expense: TExpense) => expense.type === expenseType)
@@ -59,8 +49,14 @@ const ExpensesOverview = () => {
     
     }
 
-    /* console.log(date) */
-    console.log(totalAmountInMonth(5, "Food"))
+    const totalAmountInMonth = (month: number) => {
+
+        const listMonth = test.filter((expense: TExpense) => new Date(expense.date).getMonth() === month)
+        const amount = listMonth.reduce((acc: number,cur: { price: string; }) => { return acc + +cur.price },0)
+
+        return amount
+    
+    }
 
     return (
 <       section className="total">
@@ -98,28 +94,20 @@ const ExpensesOverview = () => {
                                 <tr key={i}>
                                 <td>{type}</td>
                                 {Object.keys(MonthList).map((key,i) => 
-                                    <td key={i}>{totalAmountInMonth(+key, type)} Kn </td> )} 
+                                    <td key={i}>{byTypeAmountInMonth(+key, type)} Kn </td> )} 
                                     </tr>   
                             )
                         }
-                    </tbody>
-                    
-
-                    
+                        <tr>
+                            <td><b>Total</b></td>
+                            {Object.keys(MonthList).map((key,i) => 
+                                    <td key={i}><b>{totalAmountInMonth(+key)} Kn</b></td> )} 
+                        </tr>
+                    </tbody>     
                 </table>
-            </section>
-            
-            
+            </section>   
         </section>
-
-
-    )
-        
-        
-        
-       
-
-    
- }
+    )          
+}
 
  export default ExpensesOverview

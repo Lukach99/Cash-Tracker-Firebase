@@ -1,6 +1,17 @@
 @import "src/styles/colors.scss";
 
+.header{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 h1{
     color: $color-dark-grey;
     font-size: 35px;
+}
+
+.signup-link{
+    text-decoration: none;
 }

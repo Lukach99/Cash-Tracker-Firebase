@@ -20,9 +20,13 @@
     &__amount{
         h2{
             font-size: 30px;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid $color-dark-grey;
         }
         p{
             font-size: 20px;
+            margin-top: 5px;
         }
     }
 
@@ -31,7 +35,14 @@
         flex-wrap: wrap;
         width: 50%;
         justify-content: space-between;
-
+        h4{
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid $color-dark-grey;
+        }
+        p{
+            margin-top: 5px;
+        }
        
     }
 }
