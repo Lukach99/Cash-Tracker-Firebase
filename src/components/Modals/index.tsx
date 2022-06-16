@@ -1,31 +1,37 @@
 import { faEdit, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
-import { TExpense } from "../../models/expense.model";
-import FormSection from "../FormSection";
-
 import "./index.scss";
 
-const EditModal = ({ children, stateHandler, prefill }: Props) => {
+const ModalView = ({ children, onConfirm, stateHandler, isOverview, isDelete }: Props) => {
+    
   const modalContainer:any = document.getElementById("modal-container");
 
   document.body.style.overflow = "hidden";
 
   const close = () => {
     document.body.style.overflow = "";
-
     stateHandler(false);
+    isOverview(false)
+    isDelete(false)
+
   };
 
+  const confirmHandler = async () => {
+    await onConfirm();
+
+    close();
+  };
 
   const Modal = (
     <div className="modal-container" onClick={close}>
-      <div className="modal" onClick={(event) => event.stopPropagation()}>
-        <FontAwesomeIcon className="modal__cancel" icon={faX} onClick={close} />
-        <FormSection prefill={prefill} isEditPage={true} idCard={prefill?.id} closeEdit={stateHandler}></FormSection>
+        <div className="modal" onClick={(event) => event.stopPropagation()}>
+
+            <FontAwesomeIcon className="modal__cancel" icon={faX} onClick={close} />
+            {children}
+        
         </div>
-      </div>
-    /* </div> */
+    </div>
   );
 
   return createPortal(Modal, modalContainer);
@@ -33,8 +39,11 @@ const EditModal = ({ children, stateHandler, prefill }: Props) => {
 
 type Props = { 
     children?: any; 
-    stateHandler: Function;
-    prefill?: TExpense
+    onConfirm?: any;
+    stateHandler?: any;
+    isOverview: any;
+    isDelete: any
+
 };
 
-export default EditModal;
+export default ModalView;

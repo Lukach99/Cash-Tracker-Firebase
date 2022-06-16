@@ -1,22 +1,15 @@
 import "./index.scss"
-import Select from 'react-select'
 import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
 import ExpensesHttp from "../../http/expenses.http";
-import { Expense, TExpense } from "../../models/expense.model";
+import { TExpense } from "../../models/expense.model";
 import { useForm } from "react-hook-form";
-
 import {ExpenseType} from "../../constants/generic.enums";
-import { EnumDeclaration, EnumType } from "typescript";
+import REGEX_DECIMAL_NUM from "../../constants/regex.constants";
 
-const options = [
-  { value: 'Hrana', label: 'Hrana' },
-  { value: 'Režije', label: 'Režije' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
 
-const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => { 
-    const {register, handleSubmit, getValues, reset, resetField,
+const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props) => { 
+    const {register, handleSubmit, getValues, reset,
         formState: { isSubmitSuccessful, errors }} = useForm()
     const { test, setTest } = useContext(ExpensesContext);
 
@@ -49,6 +42,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => {
             updateExpenses(newExpense)
             document.body.style.overflow = "";
             closeEdit(false)
+            closeModule(false)
         
         } else{
             const newExpense: any = getValues()
@@ -78,7 +72,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => {
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
             <input type="date" {...register("date",{ required: true})} id="" />
-            <input type="text" {...register("price",{ required: true, pattern: /^[0-9]*$/ })} placeholder="Cijena" />
+            <input type="text" {...register("price",{ required: true, pattern: REGEX_DECIMAL_NUM })} placeholder="Cijena" />
             {errors.price && <p>Please enter number</p>}
             <button type="submit">Dodaj</button>
         </form>
@@ -89,7 +83,8 @@ const FormSection = ({idCard,isEditPage, prefill, closeEdit}:Props) => {
      idCard?: any;
      isEditPage?: boolean;
      prefill?: TExpense;
-     closeEdit?: any;
+     closeModule?: any;
+     closeEdit?:any
  }
 
 export default FormSection

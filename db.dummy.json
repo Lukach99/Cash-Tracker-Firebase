@@ -2,38 +2,10 @@
   "expenses": [
     {
       "type": "Utilities",
-      "overview": "cdd",
-      "date": "2022-06-22",
-      "price": "200",
-      "id": 7
-    },
-    {
-      "type": "Fuel",
-      "overview": "fefew",
-      "date": "2022-03-14",
-      "price": "400",
-      "id": 10
-    },
-    {
-      "type": "Utilities",
-      "overview": "fwrf",
-      "date": "2022-03-17",
+      "overview": "banana22wr2FFW",
+      "date": "2022-06-16",
       "price": "10",
-      "id": 11
-    },
-    {
-      "type": "Rest",
-      "overview": "odjeca",
-      "date": "2022-06-22",
-      "price": "400",
-      "id": 13
-    },
-    {
-      "type": "Food",
-      "overview": "test",
-      "date": "2022-06-08",
-      "price": "200",
-      "id": 14
+      "id": 1
     }
   ]
 }

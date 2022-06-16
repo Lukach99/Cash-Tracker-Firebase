@@ -7,8 +7,6 @@ import Card from "../Card"
 import "./index.scss"
 
 const CardList = () => { 
-    const [expenses, setExpenses] = useState<Expense[]>([])
-
     const { test, setTest } = useContext(ExpensesContext);
 
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
@@ -22,9 +20,12 @@ const CardList = () => {
     )
 
     useEffect(() => {
-      fetchExpenses() 
-      console.log("fetched") 
-    }, [fetchExpenses])
+      if(test.length === 0){
+        fetchExpenses() 
+        console.log("fetched") 
+      }
+      
+    }, [fetchExpenses,test])
     
     
 
