@@ -44,7 +44,7 @@ class ExpensesHttp extends HttpClient{
       /* create user */
       public async createUser(userName: string) {
         const { data } = await axios.post(this.url(`/users.json`), {username: userName});
-        
+        const test = await axios.post(this.url(`/${userName}.json`), {type: "Utilities", overview: "Primjer"});
         return data
         
       }

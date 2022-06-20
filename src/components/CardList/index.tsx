@@ -14,22 +14,28 @@ const CardList = () => {
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
 
     const fetchExpenses = useCallback(
-      async () => {
+      async (user: string) => {
         const data = await expensesHttp.getExpenses(user)
         setTest(data)
         
        
   
       },
-      [expensesHttp],
+      [expensesHttp,user],
     )
 
+
+    console.log("render")
+
     useEffect(() => {
+      if(test.length === 0){
+        fetchExpenses(user) 
+        console.log("fetched") 
+      }
+     
+      fetchExpenses(user) 
       
-        fetchExpenses() 
-        
-      
-    }, [fetchExpenses,test,user])
+    }, [])
     
     
 
