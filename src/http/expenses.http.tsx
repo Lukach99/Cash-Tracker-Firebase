@@ -11,7 +11,9 @@ class ExpensesHttp extends HttpClient{
     
     public async getExpenses(username = "expenses"): Promise<Expense[]> {
         const { data } = await axios.get(this.url(`/${username}.json`));
-        console.log(Object.values(data))
+        if(!data){
+          return []
+        }
         const resultKeys = Object.keys(data)
         const result = Object.values(data)
         console.log({key : resultKeys})
@@ -42,15 +44,15 @@ class ExpensesHttp extends HttpClient{
 
 
       /* create user */
-      public async createUser(userName: string) {
-        const { data } = await axios.post(this.url(`/users.json`), {username: userName});
-        const test = await axios.post(this.url(`/${userName}.json`), {type: "Utilities", overview: "Primjer"});
+      public async createUser(userinfo: any, username:string) {
+        const { data } = await axios.post(this.url(`/users.json`), userinfo);
+        
         return data
         
       }
 
       public async getUser(): Promise<any> {
-        const { data } = await axios.get(this.url("/users/-N4yOknbw5JZemt03tbn.json"));
+        const { data } = await axios.get(this.url("/users.json"));
         
         return data
     }

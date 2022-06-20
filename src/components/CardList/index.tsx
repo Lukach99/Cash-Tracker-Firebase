@@ -17,7 +17,9 @@ const CardList = () => {
       async (user: string) => {
         const data = await expensesHttp.getExpenses(user)
         setTest(data)
-        
+        const users = await expensesHttp.getUser()
+        const usersfilter = Object.keys(users).filter((key) => users[key]?.email === "lukac.tino@gmail.com" )
+        console.log(users[usersfilter[0]].username)
        
   
       },
@@ -32,7 +34,7 @@ const CardList = () => {
         fetchExpenses(user) 
         console.log("fetched") 
       }
-     
+      
       fetchExpenses(user) 
       
     }, [])

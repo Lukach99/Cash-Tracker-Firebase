@@ -1,4 +1,4 @@
-/* import "./index.scss" */
+import "./index.scss"
 import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ExpensesHttp from "../../../http/expenses.http";
@@ -15,18 +15,22 @@ const SignUp = () => {
     let navigate = useNavigate();
 
     const onSubmit = async () => {
-        const username = getValues("username")
-        setUser(username)
-        const user = await expensesHttp.createUser(username)
+        const userName = getValues("username")
+        const userInfo = getValues()
+        console.log(userInfo)
+        setUser(userName)
+        const user = await expensesHttp.createUser(userInfo, userName)
         
         console.log(user)
         navigate("/")
     }
 
     return <section>
-        <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
+        <form action="" name="test" className="form-create-user" onSubmit={handleSubmit(onSubmit)}>
             
             <input type="text" {...register("username",{ required: true })} placeholder="Username" />
+            <input type="email" {...register("email",{ required: true })} placeholder="E-mail" />
+            <input type="password" {...register("password",{ required: true })} placeholder="Password" />
             <button type="submit">Create User</button>
         </form>
     </section>
