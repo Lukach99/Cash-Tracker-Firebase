@@ -19,7 +19,7 @@ const Card = ({expense}: Props) => {
     const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
     const [isOverviewModalActive, setIsOverviewModalActive] = useState(false);
    
-    const {id,type, overview, price, date} = expense
+    const {id,type, overview, price, date, firebaseId} = expense
 
     const expensesHttp = useMemo(() => new ExpensesHttp, [])
 

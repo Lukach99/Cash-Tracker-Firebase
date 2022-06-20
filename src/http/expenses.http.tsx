@@ -9,30 +9,51 @@ class ExpensesHttp extends HttpClient{
         super(BASE_API_URL)
     }
     
-    public async getExpenses(): Promise<Expense[]> {
-        const { data } = await axios.get(this.url("/expenses"));
-        const expenses: Expense[] = data.map((expense: TExpense) => new Expense(expense))
-
+    public async getExpenses(username = "expenses"): Promise<Expense[]> {
+        const { data } = await axios.get(this.url(`/${username}.json`));
+        console.log(Object.values(data))
+        const resultKeys = Object.keys(data)
+        const result = Object.values(data)
+        console.log({key : resultKeys})
+        const expenses: Expense[] = resultKeys.map((key: string) => new Expense(data[key], key))
+        const entries = Object.entries(data)
+        console.log({expenses: expenses})
         return expenses
     }
 
-    public async createExpense(expense: TExpense): Promise<Expense> {
-        const { data } = await axios.post(this.url(`/expenses`), expense);
+    public async createExpense(expense: TExpense, username = "expenses") {
+        const { data } = await axios.post(this.url(`/${username}.json`), expense);
     
-        return new Expense(data);
+        
       }
 
-    public async deleteExpense(id: number | undefined): Promise<Object> {
-        const { data } = await axios.delete(this.url(`/expenses/${id}`));
+    public async deleteExpense(id: string | undefined, username = "expenses"): Promise<Object> {
+        const { data } = await axios.delete(this.url(`/${username}/${id}.json`));
     
         return data;
       }
 
-    public async updateExpense(id: number, body: any): Promise<Expense> {
-        const { data } = await axios.patch(this.url(`/expenses/${id}`), body);
+    public async updateExpense(id: string, body: any, username = "expenses") {
+      console.log(id)
+        const { data } = await axios.patch(this.url(`/${username}/${id}.json`), body);
     
-        return new Expense(data);
+       
       }
+
+
+      /* create user */
+      public async createUser(userName: string) {
+        const { data } = await axios.post(this.url(`/users.json`), {username: userName});
+        
+        return data
+        
+      }
+
+      public async getUser(): Promise<any> {
+        const { data } = await axios.get(this.url("/users/-N4yOknbw5JZemt03tbn.json"));
+        
+        return data
+    }
 
     
 }

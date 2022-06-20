@@ -6,28 +6,31 @@ import { TExpense } from "../../models/expense.model";
 import { useForm } from "react-hook-form";
 import {ExpenseType} from "../../constants/generic.enums";
 import REGEX_DECIMAL_NUM from "../../constants/regex.constants";
+import { UserContext } from "../../contex/user.contex";
 
 
 const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props) => { 
     const {register, handleSubmit, getValues, reset,
         formState: { isSubmitSuccessful, errors }} = useForm()
     const { test, setTest } = useContext(ExpensesContext);
-
+    const { user, setUser } = useContext(UserContext);
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
 
     
     const addExpenses = useCallback(
       async (expense: TExpense) => {
-        const data = await expensesHttp.createExpense(expense)
-        setTest(await expensesHttp.getExpenses())
+        const data = await expensesHttp.createExpense(expense, user)
+        
+        setTest(await expensesHttp.getExpenses(user))
       },
       [expensesHttp,setTest],
     )
 
     const updateExpenses = useCallback(
         async (expense: TExpense) => {
-          const data = await expensesHttp.updateExpense(idCard,expense)
-          setTest(await expensesHttp.getExpenses())
+          console.log(idCard)
+          const data = await expensesHttp.updateExpense(idCard,expense, user)
+          setTest(await expensesHttp.getExpenses(user))
         },
         [expensesHttp,setTest],
       )

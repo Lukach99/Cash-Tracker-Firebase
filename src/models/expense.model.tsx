@@ -1,5 +1,6 @@
 export type TExpense = {
-    id?: number,
+    id?: string,
+    firebaseId?: string
     type: string,
     overview: string,
     price: string,
@@ -7,14 +8,14 @@ export type TExpense = {
 }
 
 export class Expense{
-    id?: number
+    id?: number | string
     type: string
     overview: string
     price: string
     date: string
 
-    constructor(expense: TExpense){
-        this.id = expense.id
+    constructor(expense: TExpense, firebaseId: string){
+        this.id = firebaseId
         this.type = expense.type
         this.overview = expense.overview
         this.price = expense.price
