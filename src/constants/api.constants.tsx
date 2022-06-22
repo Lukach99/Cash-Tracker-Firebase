@@ -1,1 +1,1 @@
-export const BASE_API_URL = "https://json-server-heroku-hosting-tl.herokuapp.com";
+export const BASE_API_URL = "https://cash-tracker-ada05-default-rtdb.europe-west1.firebasedatabase.app";

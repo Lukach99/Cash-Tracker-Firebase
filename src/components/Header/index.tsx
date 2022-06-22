@@ -6,6 +6,12 @@ const Header = () => {
         <NavLink to="/expenses" className="signup-link" >
             <h1>CashTracker</h1>
           </NavLink>
+          <NavLink to="/signup" className="link" >
+            Sign In
+          </NavLink>
+          <NavLink to="/login" className="link" >
+            Login
+          </NavLink>
 
     </section>
 }

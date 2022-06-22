@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
+import { UserContext } from "../../contex/user.contex";
 import ExpensesHttp from "../../http/expenses.http";
 import { Expense, TExpense } from "../../models/expense.model";
 import Card from "../Card"
@@ -8,24 +9,35 @@ import "./index.scss"
 
 const CardList = () => { 
     const { test, setTest } = useContext(ExpensesContext);
+    const { user, setUser } = useContext(UserContext);
 
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
 
     const fetchExpenses = useCallback(
-      async () => {
-        const data = await expensesHttp.getExpenses()
+      async (user: string) => {
+        const data = await expensesHttp.getExpenses(user)
         setTest(data)
+        const users = await expensesHttp.getUser()
+        const usersfilter = Object.keys(users).filter((key) => users[key]?.email === "lukac.tino@gmail.com" )
+        console.log(users[usersfilter[0]].username)
+       
+  
       },
-      [expensesHttp],
+      [expensesHttp,user],
     )
+
+
+    console.log("render")
 
     useEffect(() => {
       if(test.length === 0){
-        fetchExpenses() 
+        fetchExpenses(user) 
         console.log("fetched") 
       }
       
-    }, [fetchExpenses,test])
+      fetchExpenses(user) 
+      
+    }, [])
     
     
 

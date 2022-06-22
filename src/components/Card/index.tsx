@@ -11,15 +11,18 @@ import {ExpenseType} from "../../constants/generic.enums";
 import ModalView from "../Modals";
 import DeleteM from "../Modals/DeleteModal";
 import OverviewM from "../Modals/OverviewModal";
+import { UserContext } from "../../contex/user.contex";
 
 const Card = ({expense}: Props) => { 
 
     const { test, setTest } = useContext(ExpensesContext);
+    const { user, setUser } = useContext(UserContext);
+    
     const [isModalActive, setIsModalActive] = useState(false);
     const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
     const [isOverviewModalActive, setIsOverviewModalActive] = useState(false);
    
-    const {id,type, overview, price, date} = expense
+    const {id,type, overview, price, date, firebaseId} = expense
 
     const expensesHttp = useMemo(() => new ExpensesHttp, [])
 
@@ -38,7 +41,7 @@ const Card = ({expense}: Props) => {
     const deleteHandler = async () => {
         const newExpenses = test.filter((expense: TExpense) => expense.id !== id )
 
-        await expensesHttp.deleteExpense(id)
+        await expensesHttp.deleteExpense(id, user)
         setTest(newExpenses)
         if(isOverviewModalActive){
             setIsOverviewModalActive(false)
