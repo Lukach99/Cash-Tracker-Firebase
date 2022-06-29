@@ -35,6 +35,10 @@ const Login = () => {
         navigate("/")
     }
 
+    const createAccHandler = () => {
+        navigate("/signup")
+    }
+
     return <section>
         <form action="" name="test" className="form-create-user" onSubmit={handleSubmit(onSubmit)}>
             
@@ -46,6 +50,9 @@ const Login = () => {
         {wrongInfo && 
             <p>Wrong password or e-mail! Please try again</p>
             }
+
+        <p>OR</p>
+        <button onClick={createAccHandler}>Create user account</button>
     </section>
 }
 
