@@ -17,24 +17,19 @@ const CardList = () => {
       async (user: string) => {
         const data = await expensesHttp.getExpenses(user)
         setTest(data)
-        const users = await expensesHttp.getUser()
-        const usersfilter = Object.keys(users).filter((key) => users[key]?.email === "lukac.tino@gmail.com" )
-        console.log(users[usersfilter[0]].username)
-       
-  
+
       },
       [expensesHttp,user],
     )
 
-
-    console.log("render")
-
     useEffect(() => {
-      if(test.length === 0){
+
+
+     /*  if(test.length === 0){
         fetchExpenses(user) 
         console.log("fetched") 
-      }
-      
+      } */
+
       fetchExpenses(user) 
       
     }, [])

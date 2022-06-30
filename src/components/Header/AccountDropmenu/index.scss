@@ -1,0 +1,16 @@
+.acc-dropdown{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: inherit;
+    border: 2px solid black;
+    
+    p:hover{
+        background-color: lightblue;
+    }
+
+    /* &-signoff{
+        cursor: pointer;
+    } */
+
+}

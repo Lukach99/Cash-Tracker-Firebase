@@ -57,6 +57,12 @@ class ExpensesHttp extends HttpClient{
         return data
     }
 
+    public async getUserInfo(query:string): Promise<any> {
+      const { data } = await axios.get(this.url(`/users.json?orderBy="username"&equalTo="${query}"&print=pretty`));
+      
+      return Object.values(data)[0]
+  }
+
     
 }
 

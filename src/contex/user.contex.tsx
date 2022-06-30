@@ -8,8 +8,10 @@ const UserContext:any = createContext({
 
 
 const UserProvider = ({children}:Props) => {
-    const [user, setUser] = useState("expenses");
-
+    const rememberUser = localStorage.getItem('user')
+    const [user, setUser] = useState(rememberUser || "expenses");
+   
+   
     return (
     <UserContext.Provider value={{user, setUser}}>
         {children}
