@@ -20,6 +20,10 @@ const Login = () => {
     const onSubmit = async () => {
         const email = getValues("email")
         const password = getValues("password")
+        const checkbox = getValues("checkbox")
+
+
+        
 
         const users = await expensesHttp.getUser()
         console.log(users)
@@ -29,6 +33,12 @@ const Login = () => {
             reset()
             setWrongInfo(true)
             return
+        }
+
+        if(checkbox){
+            localStorage.setItem('user', users[usersfilter[0]].username )
+        } else {
+            localStorage.setItem('user',"" )
         }
 
         setUser(users[usersfilter[0]].username)
@@ -44,6 +54,8 @@ const Login = () => {
             
             <input type="email" {...register("email",{ required: true })} placeholder="e-mail" />
             <input type="password" {...register("password",{ required: true })} placeholder="password" />
+            <label ><input type="checkbox" {...register("checkbox")} /> Remember login</label>
+            
             
             <button type="submit">Login in</button>
         </form>
