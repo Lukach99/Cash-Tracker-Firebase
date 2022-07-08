@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { Expense } from "../models/expense.model";
 
-const UserContext:any = createContext({
+const UserContext = createContext({
     user: "expenses",
     setUser: (user: string) => {},
   });
@@ -22,5 +22,6 @@ const UserProvider = ({children}:Props) => {
 type Props = {
     children: any
 }
+
 
 export {UserContext, UserProvider}

@@ -8,7 +8,7 @@ export type TExpense = {
 }
 
 export class Expense{
-    id?: number | string
+    id: string 
     type: string
     overview: string
     price: string

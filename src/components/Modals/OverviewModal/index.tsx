@@ -1,15 +1,14 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { type } from "@testing-library/user-event/dist/type"
 import { useState } from "react"
-import { TExpense } from "../../../models/expense.model"
+import { Expense} from "../../../models/expense.model"
 import EditM from "../EditModal"
 
 const OverviewM = ({expense, deleteHandler, stateHandler, isOverviewActive}:Props) => { 
     const [isEditModalActive, setIsEditModalActive] = useState(false);
     const {type, overview, price, date} = expense
 
-    const openEdit = () => {
+    const openEdit: React.MouseEventHandler<SVGSVGElement> = () => {
         setIsEditModalActive(true)
     }
     return <>   
@@ -36,10 +35,10 @@ const OverviewM = ({expense, deleteHandler, stateHandler, isOverviewActive}:Prop
  }
 
 type Props = {
-    expense: TExpense;
-    deleteHandler: any;
-    stateHandler: any;
-    isOverviewActive: any
+    expense: Expense;
+    deleteHandler:  React.MouseEventHandler<SVGSVGElement>;
+    stateHandler: React.Dispatch<React.SetStateAction<boolean>>;
+    isOverviewActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default OverviewM

@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faXmark
   } from "@fortawesome/free-solid-svg-icons";
-import { TExpense } from "../../models/expense.model"
+import { Expense, TExpense } from "../../models/expense.model"
 import "./index.scss"
 import ExpensesHttp from "../../http/expenses.http";
-import { useContext, useMemo, useState } from "react";
+import { MouseEventHandler, useContext, useMemo, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
 import {ExpenseType} from "../../constants/generic.enums";
 import ModalView from "../Modals";
@@ -22,24 +22,24 @@ const Card = ({expense}: Props) => {
     const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
     const [isOverviewModalActive, setIsOverviewModalActive] = useState(false);
    
-    const {id,type, overview, price, date, firebaseId} = expense
+    const {id,type, overview, price, date} = expense
 
     const expensesHttp = useMemo(() => new ExpensesHttp, [])
 
-    const openDeleteModal:any = (event: MouseEvent) => {
+    const openDeleteModal: MouseEventHandler<SVGSVGElement> = (event) => {
         event.stopPropagation();
         setIsModalActive(true);
         setIsDeleteModalActive(true)
       };
 
-    const openOverviewModal:any = (event: MouseEvent) => {
+    const openOverviewModal: MouseEventHandler<HTMLElement> = (event) => {
         event.stopPropagation();
         setIsModalActive(true);
         setIsOverviewModalActive(true);
       };
 
     const deleteHandler = async () => {
-        const newExpenses = test.filter((expense: TExpense) => expense.id !== id )
+        const newExpenses = test.filter((expense) => expense.id !== id )
 
         await expensesHttp.deleteExpense(id, user)
         setTest(newExpenses)
@@ -51,7 +51,7 @@ const Card = ({expense}: Props) => {
 
     return <>
       {isModalActive && (
-        <ModalView onConfirm={undefined} 
+        <ModalView 
               stateHandler={setIsModalActive}
               isDelete={setIsDeleteModalActive}    
               isOverview={setIsOverviewModalActive}
@@ -77,6 +77,6 @@ const Card = ({expense}: Props) => {
 }
 
 type Props={
-    expense: TExpense
+    expense: Expense
 }
 export default Card

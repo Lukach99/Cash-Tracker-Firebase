@@ -2,7 +2,7 @@ import "./index.scss"
 import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
 import ExpensesHttp from "../../http/expenses.http";
-import { TExpense } from "../../models/expense.model";
+import { Expense, TExpense } from "../../models/expense.model";
 import { useForm } from "react-hook-form";
 import {ExpenseType} from "../../constants/generic.enums";
 import REGEX_DECIMAL_NUM from "../../constants/regex.constants";
@@ -18,8 +18,8 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
 
     
     const addExpenses = useCallback(
-      async (expense: TExpense) => {
-        const data = await expensesHttp.createExpense(expense, user)
+      async (expense: Expense) => {
+        await expensesHttp.createExpense(expense, user)
         
         setTest(await expensesHttp.getExpenses(user))
       },
@@ -29,7 +29,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
     const updateExpenses = useCallback(
         async (expense: TExpense) => {
           console.log(idCard)
-          const data = await expensesHttp.updateExpense(idCard,expense, user)
+          await expensesHttp.updateExpense(idCard,expense, user)
           setTest(await expensesHttp.getExpenses(user))
         },
         [expensesHttp,setTest],
@@ -44,8 +44,8 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
             
             updateExpenses(newExpense)
             document.body.style.overflow = "";
-            closeEdit(false)
-            closeModule(false)
+            closeEdit?.(false)
+            closeModule?.(false)
         
         } else{
             const newExpense: any = getValues()
@@ -70,7 +70,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
     return <section className="form-section">
         <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
             <select {...register("type")} required className="input-select">
-                <option defaultValue={test} value="test" hidden>Tip potrošnje</option>
+                <option defaultValue="test" value="test" hidden>Tip potrošnje</option>
                 {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{ExpenseType[key as keyof typeof ExpenseType]}</option> )}
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
@@ -83,11 +83,11 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
  }
 
  type Props = {
-     idCard?: any;
+     idCard?: string;
      isEditPage?: boolean;
-     prefill?: TExpense;
-     closeModule?: any;
-     closeEdit?:any
+     prefill?: Expense;
+     closeModule?: React.Dispatch<React.SetStateAction<boolean>>;
+     closeEdit?: React.Dispatch<React.SetStateAction<boolean>>
  }
 
 export default FormSection

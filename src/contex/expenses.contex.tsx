@@ -1,14 +1,14 @@
 import { createContext, useState } from "react";
 import { Expense, TExpense } from "../models/expense.model";
 
-const ExpensesContext:any = createContext<ContextProps>({
+const ExpensesContext = createContext<ContextProps>({
     test: [],
     setTest: (expenses: Expense[]) => {},
   });
 
 
 const ExpensesProvider = ({children}:Props) => {
-    const [test, setTest] = useState<TExpense[]>([]);
+    const [test, setTest] = useState<Expense[]>([]);
 
     return (
     <ExpensesContext.Provider value={{test, setTest}}>

@@ -1,9 +1,9 @@
-import { TExpense } from "../../../models/expense.model"
+import { Expense, TExpense } from "../../../models/expense.model"
 
 
 const DeleteM = ({expense, onConfirm, stateHandler,isDeleteState}:Prop) => { 
 
-    const close = () => {
+    const close: React.MouseEventHandler<HTMLButtonElement> = () => {
         document.body.style.overflow = "";
         isDeleteState(false)
         stateHandler(false);
@@ -24,10 +24,10 @@ const DeleteM = ({expense, onConfirm, stateHandler,isDeleteState}:Prop) => {
  }
 
  type Prop = {
-    expense: TExpense;
-    onConfirm: any;
-    stateHandler:any;
-    isDeleteState:any
+    expense: Expense;
+    onConfirm: React.MouseEventHandler<HTMLButtonElement>;
+    stateHandler: React.Dispatch<React.SetStateAction<boolean>>;
+    isDeleteState: React.Dispatch<React.SetStateAction<boolean>>
  }
 
 export default DeleteM
