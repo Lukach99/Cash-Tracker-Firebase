@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useMemo } from "react";
 import {ExpenseType, MonthList} from "../../../constants/generic.enums";
 import { ExpensesContext } from "../../../contex/expenses.contex";
 import ExpensesHttp from "../../../http/expenses.http";
-import { TExpense } from "../../../models/expense.model";
+import { Expense, TExpense } from "../../../models/expense.model";
 import "./index.scss"
 
 const ExpensesOverview = () => { 
@@ -28,21 +28,21 @@ const ExpensesOverview = () => {
     const totalAmount = () => {
         let amount = 0
 
-        test.map((item: TExpense) => { amount += +item.price  })
+        test.map((item: Expense) => { amount += +item.price  })
         return amount
     }
 
     const totalAmountOfSomething= (query: string) => {
         let amount = 0
 
-        test.filter((item: TExpense) =>  item.type === `${query}` ).map((item: TExpense) => { amount += +item.price  })
+        test.filter((item: Expense) =>  item.type === `${query}` ).map((item: Expense) => { amount += +item.price  })
         return amount
     }
 
     const byTypeAmountInMonth = (month: number, expenseType: string) => {
 
-        const listMonth = test.filter((expense: TExpense) => new Date(expense.date).getMonth() === month)
-        const listByType = listMonth.filter((expense: TExpense) => expense.type === expenseType)
+        const listMonth = test.filter((expense: Expense) => new Date(expense.date).getMonth() === month)
+        const listByType = listMonth.filter((expense: Expense) => expense.type === expenseType)
         const amount = listByType.reduce((acc: number,cur: { price: string; }) => { return acc + +cur.price },0)
 
         return amount
@@ -51,7 +51,7 @@ const ExpensesOverview = () => {
 
     const totalAmountInMonth = (month: number) => {
 
-        const listMonth = test.filter((expense: TExpense) => new Date(expense.date).getMonth() === month)
+        const listMonth = test.filter((expense: Expense) => new Date(expense.date).getMonth() === month)
         const amount = listMonth.reduce((acc: number,cur: { price: string; }) => { return acc + +cur.price },0)
 
         return amount

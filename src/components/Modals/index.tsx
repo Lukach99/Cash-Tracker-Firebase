@@ -1,26 +1,20 @@
-import { faEdit, faX } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
 import "./index.scss";
 
-const ModalView = ({ children, onConfirm, stateHandler, isOverview, isDelete }: Props) => {
+const ModalView = ({ children, stateHandler, isOverview, isDelete }: Props) => {
     
   const modalContainer:any = document.getElementById("modal-container");
 
   document.body.style.overflow = "hidden";
 
-  const close = () => {
+  const close: React.MouseEventHandler<any> = () => {
     document.body.style.overflow = "";
     stateHandler(false);
     isOverview(false)
     isDelete(false)
 
-  };
-
-  const confirmHandler = async () => {
-    await onConfirm();
-
-    close();
   };
 
   const Modal = (
@@ -39,10 +33,9 @@ const ModalView = ({ children, onConfirm, stateHandler, isOverview, isDelete }: 
 
 type Props = { 
     children?: any; 
-    onConfirm?: any;
-    stateHandler?: any;
-    isOverview: any;
-    isDelete: any
+    stateHandler:  React.Dispatch<React.SetStateAction<boolean>>;
+    isOverview:  React.Dispatch<React.SetStateAction<boolean>>;
+    isDelete:  React.Dispatch<React.SetStateAction<boolean>>
 
 };
 

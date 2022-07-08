@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import ExpensesHttp from "../../../http/expenses.http";
 import { UserContext } from "../../../contex/user.contex";
 import { useNavigate } from "react-router-dom";
+import { TUserAccount } from "../../../models/userAccount.model";
 
 const Login = () => { 
     const {register, handleSubmit, getValues, reset,
@@ -27,8 +28,9 @@ const Login = () => {
 
         const users = await expensesHttp.getUser()
         console.log(users)
-        const usersfilter = Object.keys(users).filter((key) => users[key]?.email === email && users[key]?.password === password )
-        console.log(usersfilter)
+        const usersResults = Object.keys(users)
+        const usersfilter:any = usersResults.filter((key) => users[key]?.email === email && users[key]?.password === password )
+        console.log({users: usersfilter})
         if(usersfilter.length === 0){
             reset()
             setWrongInfo(true)

@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import ExpensesHttp from "../../../http/expenses.http";
 import { UserContext } from "../../../contex/user.contex";
 import { useNavigate } from "react-router-dom";
+import { TUserAccount } from "../../../models/userAccount.model";
 
 const SignUp = () => { 
     const {register, handleSubmit, getValues, reset,
-        formState: { isSubmitSuccessful, errors }} = useForm()
+        formState: { isSubmitSuccessful, errors }} = useForm<TUserAccount>()
     const { user, setUser } = useContext(UserContext);
 
     const expensesHttp = useMemo(() => new ExpensesHttp(), []);
@@ -19,7 +20,7 @@ const SignUp = () => {
         const userInfo = getValues()
         console.log(userInfo)
         setUser(userName)
-        const user = await expensesHttp.createUser(userInfo, userName)
+        const user = await expensesHttp.createUser(userInfo)
         
         console.log(user)
         navigate("/")

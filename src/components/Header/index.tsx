@@ -41,11 +41,8 @@ const Header = () => {
                 <AccountDropdownMenu></AccountDropdownMenu>}
           </button>
             
-          
           }
-          {/* <NavLink to="/login" className="link" >
-            Login
-          </NavLink> */}
+  
 
     </section>
 }
