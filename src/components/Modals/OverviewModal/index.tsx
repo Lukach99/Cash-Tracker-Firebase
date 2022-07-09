@@ -1,8 +1,10 @@
+import "./index.scss"
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { Expense} from "../../../models/expense.model"
 import EditM from "../EditModal"
+import { ExpenseType } from "../../../constants/generic.enums"
 
 const OverviewM = ({expense, deleteHandler, stateHandler, isOverviewActive}:Props) => { 
     const [isEditModalActive, setIsEditModalActive] = useState(false);
@@ -14,13 +16,13 @@ const OverviewM = ({expense, deleteHandler, stateHandler, isOverviewActive}:Prop
     return <>   
                 {!isEditModalActive && (
                     <>
-                    <h3>{type}</h3>
+                    <h3>{ExpenseType[type as keyof typeof ExpenseType]}</h3>
                     <p>{overview}</p>
                     <p>{`${price} Kn`}</p>
                     <p>{date} </p>
-                    <div>
-                        <FontAwesomeIcon icon={faEdit} size={"lg"} className="card-delete" onClick={openEdit} ></FontAwesomeIcon>
-                        <FontAwesomeIcon icon={faTrash} size={"lg"} className="card-delete" onClick={deleteHandler} ></FontAwesomeIcon>
+                    <div className="overview-icons">
+                        <FontAwesomeIcon icon={faEdit} size={"lg"} className="card-delete icons" onClick={openEdit} ></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faTrash} size={"lg"} className="card-delete icons" onClick={deleteHandler} ></FontAwesomeIcon>
                     </div>
                     </>
                     
