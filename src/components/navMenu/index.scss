@@ -6,7 +6,10 @@
     font-weight: 500;
     
     .link{
-        text-decoration: none;
+        text-decoration: none;        
+        &:visited, &:hover, &:focus {
+            color: $color-dark-grey;
+        }
         transition: all 0.2s ease-in-out ;
     }
 

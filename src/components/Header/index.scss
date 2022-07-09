@@ -12,14 +12,37 @@ h1{
     font-size: 35px;
 }
 
-.signup-link{
+.link{
     text-decoration: none;
+    &:visited, &:hover, &:focus {
+        
+        color: $color-dark-grey;
+    }
 }
+
+
+.login-link{
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
 
 .user-acc{
     position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     border: none;
-    background-color: transparent;
     cursor: pointer;
-    width: 200px;
+    background-color: $color-lighter-grey;
+
+    &-btn{
+        font-size: 17px;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+    &-icon{
+        color: $color-light-grey;
+    }
 }

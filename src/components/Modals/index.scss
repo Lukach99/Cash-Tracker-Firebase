@@ -23,6 +23,10 @@
     padding: 20px;
     border-radius: 5px;
     background-color: $color-white;
+
+    -webkit-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
+    -moz-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
+    box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
     
     &__cancel {
         position: absolute;

@@ -1,6 +1,24 @@
+@import "src/styles/colors.scss";
 .expense-page{
     display: flex;
     justify-content: center;
+
+    &-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $color-grey ;
+        border-radius: 5px;
+
+        h3{
+            font-weight: 400;
+            color:  $color-white;
+            border-bottom: 2px solid $color-white;
+            margin-bottom: 0;
+            padding-bottom: 5px;
+        }
+        
+    }
 }
 
 @media (max-width: 600px){

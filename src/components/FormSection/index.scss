@@ -5,16 +5,19 @@
     justify-content: center;
     flex: 1;
     flex-direction: column;
-    background-color: $color-grey;
+    /* background-color: $color-grey; */
     min-width: 350px;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 0 20px ;
     
 
-    box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
+   /*  box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
     -webkit-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
-
+ */
+    h3{
+        color: $color-white;
+    }
     .form{
         display: flex;
         flex-direction: column;
@@ -34,7 +37,7 @@
         background-color: $color-white;
         color: $color-dark-grey;
         text-indent: 10px;
-        border: none;
+        
         outline: none;
         padding: 0;
         &::placeholder{
@@ -51,7 +54,7 @@
     width: 90%;
     padding: 20px ;
     outline: none;
-    border: none;
+    
     margin-bottom: 20px;
     
     option{
