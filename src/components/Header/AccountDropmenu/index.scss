@@ -1,12 +1,20 @@
+@import "src/styles/colors.scss";
+
 .acc-dropdown{
     position: absolute;
     left: 0;
     top: 100%;
-    width: inherit;
-    border: 2px solid black;
+    width: 100%;
+    border: 1px solid $color-light-grey;
+    border-radius: 5px;
+    background-color: $color-lighter-grey;
+
+    -webkit-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
+    -moz-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
+    box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
     
-    p:hover{
-        background-color: lightblue;
+    p{
+        font-size: 16px;
     }
 
     /* &-signoff{

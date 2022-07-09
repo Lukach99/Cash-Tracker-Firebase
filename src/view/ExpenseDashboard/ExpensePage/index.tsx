@@ -7,7 +7,11 @@ import "./index.scss"
 const ExpensePage = () => { 
     return <section className="expense-page">
                 <CardList></CardList>
-                <FormSection></FormSection>
+                <div className="expense-page-form">
+                    <h3>Create new cost</h3>
+                    <FormSection></FormSection>
+                </div>
+                
             </section>
             
         
