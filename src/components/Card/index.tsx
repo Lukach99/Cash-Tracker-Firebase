@@ -12,6 +12,7 @@ import ModalView from "../Modals";
 import DeleteM from "../Modals/DeleteModal";
 import OverviewM from "../Modals/OverviewModal";
 import { UserContext } from "../../contex/user.contex";
+import Moment from "moment";
 
 const Card = ({expense}: Props) => { 
 
