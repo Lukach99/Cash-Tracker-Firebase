@@ -3,14 +3,15 @@ import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { ExpensesContext } from "../../contex/expenses.contex";
 import ExpensesHttp from "../../http/expenses.http";
 import { Expense, TExpense } from "../../models/expense.model";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {ExpenseType} from "../../constants/generic.enums";
 import REGEX_DECIMAL_NUM from "../../constants/regex.constants";
 import { UserContext } from "../../contex/user.contex";
 
 
+
 const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props) => { 
-    const {register, handleSubmit, getValues, reset,
+    const {register, handleSubmit, getValues, reset, control,
         formState: { isSubmitSuccessful, errors }} = useForm()
     const { test, setTest } = useContext(ExpensesContext);
     const { user, setUser } = useContext(UserContext);
@@ -74,10 +75,10 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
                 {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{ExpenseType[key as keyof typeof ExpenseType]}</option> )}
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
-            <input type="date" {...register("date",{ required: true})} id="" />
-            <input type="text" {...register("price",{ required: true, pattern: REGEX_DECIMAL_NUM })} placeholder="Cijena" />
+            <input type="date" {...register("date",{ required: true})} id="" className="calender"/>
+            <input type="text" {...register("price",{ required: true, pattern: REGEX_DECIMAL_NUM })} className="price" placeholder="Cijena" />
             {errors.price && <p>Please enter number</p>}
-            <button type="submit">Dodaj</button>
+            <button type="submit" className="form-btn">Add cost</button>
         </form>
     </section>
  }
