@@ -5,16 +5,10 @@
     justify-content: center;
     flex: 1;
     flex-direction: column;
-    /* background-color: $color-grey; */
     min-width: 350px;
     border-radius: 5px;
     padding: 0 20px ;
     
-
-   /*  box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 42px -16px rgba(0,0,0,0.75);
- */
     h3{
         color: $color-white;
     }
@@ -27,6 +21,21 @@
         input{
             margin-bottom: 10px
         }
+
+        &-btn{
+            width: 90.5%;
+           
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: $color-grey;
+            background-color: $color-lighter-grey;
+            border: 1px solid $color-grey;
+            transition: background-color 0.2s ease-in-out;
+            &:hover{
+                background-color: $color-light-grey;
+            }
+        }
     }
     .textarea{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,6 +43,7 @@
         width: 90%;
         margin-bottom: 10px;
         resize: none;
+        border: 1px solid $color-grey;
         background-color: $color-white;
         color: $color-dark-grey;
         text-indent: 10px;
@@ -47,20 +57,35 @@
 
         
     }
+
+    .price{
+        width: 90%;
+        border: 1px solid $color-grey;
+        padding: 5px 0;
+        text-indent: 10px;
+        color: $color-dark-grey;
+        outline: none;
+    
+    }
+
+    .calender{
+        width: 90%;
+        border: 1px solid $color-grey;
+        padding: 5px 0;
+        text-indent: 5px;
+        color: $color-dark-grey;
+        outline: none;
+    }
     
 }
 
 .input-select{
-    width: 90%;
+    width: 90.5%;
     padding: 20px ;
     outline: none;
-    
-    margin-bottom: 20px;
-    
-    option{
-        border-radius: 0;
-    }
-
+    border: 1px solid $color-grey;
+    margin-bottom: 10px;
+    color: $color-dark-grey;
     
 }
 
