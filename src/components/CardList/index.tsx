@@ -22,12 +22,6 @@ const CardList = () => {
 
     useEffect(() => {
 
-
-     /*  if(test.length === 0){
-        fetchExpenses(user) 
-        console.log("fetched") 
-      } */
-
       fetchExpenses(user) 
       
     }, [])

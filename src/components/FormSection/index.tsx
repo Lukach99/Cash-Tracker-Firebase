@@ -72,7 +72,7 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
         <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
             <select {...register("type")} required className="input-select">
                 <option defaultValue="test" value="test" hidden>Type of cost</option>
-                {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{ExpenseType[key as keyof typeof ExpenseType]}</option> )}
+                {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{key}</option> )}
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
             <input type="date" {...register("date",{ required: true})} id="" className="calender"/>

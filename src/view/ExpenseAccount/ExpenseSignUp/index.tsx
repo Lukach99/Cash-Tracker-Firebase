@@ -26,7 +26,7 @@ const SignUp = () => {
         navigate("/")
     }
 
-    return <section>
+    return <section className="form-user-section">
         <form action="" name="test" className="form-create-user" onSubmit={handleSubmit(onSubmit)}>
             
             <input type="text" {...register("username",{ required: true })} placeholder="Username" />

@@ -8,17 +8,20 @@
     border: 1px solid $color-light-grey;
     border-radius: 5px;
     background-color: $color-lighter-grey;
+    color: $color-grey;
 
     -webkit-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
     -moz-box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
     box-shadow: 10px 10px 37px -19px rgba(0,0,0,0.22);
+
+
     
     p{
         font-size: 16px;
+        transition: color 0.2s ease-in-out;
+        &:hover{
+            color: $color-red;
+        }
     }
-
-    /* &-signoff{
-        cursor: pointer;
-    } */
 
 }

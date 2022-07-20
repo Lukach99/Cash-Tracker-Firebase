@@ -5,10 +5,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    color: $color-grey;
 }
 
 h1{
-    color: $color-dark-grey;
+    
     font-size: 35px;
 }
 
@@ -16,7 +17,7 @@ h1{
     text-decoration: none;
     &:visited, &:hover, &:focus {
         
-        color: $color-dark-grey;
+        color: $color-grey;
     }
 }
 
@@ -36,6 +37,7 @@ h1{
     border: none;
     cursor: pointer;
     background-color: $color-lighter-grey;
+    color: $color-grey;
 
     &-btn{
         font-size: 17px;
