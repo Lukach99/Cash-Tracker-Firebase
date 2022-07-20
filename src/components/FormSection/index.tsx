@@ -71,12 +71,12 @@ const FormSection = ({idCard,isEditPage, prefill, closeModule, closeEdit}:Props)
     return <section className="form-section">
         <form action="" name="test" className="form" onSubmit={handleSubmit(onSubmit)}>
             <select {...register("type")} required className="input-select">
-                <option defaultValue="test" value="test" hidden>Tip potrošnje</option>
+                <option defaultValue="test" value="test" hidden>Type of cost</option>
                 {Object.keys(ExpenseType).map((key) =>  <option key={key} value={key}>{ExpenseType[key as keyof typeof ExpenseType]}</option> )}
             </select>
             <textarea {...register("overview" , {required: true} )} id="" className="textarea"  placeholder="Message"></textarea>
             <input type="date" {...register("date",{ required: true})} id="" className="calender"/>
-            <input type="text" {...register("price",{ required: true, pattern: REGEX_DECIMAL_NUM })} className="price" placeholder="Cijena" />
+            <input type="text" {...register("price",{ required: true, pattern: REGEX_DECIMAL_NUM })} className="price" placeholder="Price" />
             {errors.price && <p>Please enter number</p>}
             <button type="submit" className="form-btn">Add cost</button>
         </form>

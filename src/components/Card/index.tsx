@@ -69,7 +69,7 @@ const Card = ({expense}: Props) => {
         
       <article className="card" onClick={openOverviewModal}>
           <FontAwesomeIcon icon={faXmark} className="card-del" onClick={openDeleteModal} ></FontAwesomeIcon>
-              <h3>{ExpenseType[type as keyof typeof ExpenseType]}</h3>
+              <h3>{type}</h3>
               <p>{overview}</p>
               <p>{`${price} Kn`}</p>
               <p>{date} </p>

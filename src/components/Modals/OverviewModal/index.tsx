@@ -16,7 +16,7 @@ const OverviewM = ({expense, deleteHandler, stateHandler, isOverviewActive}:Prop
     return <>   
                 {!isEditModalActive && (
                     <>
-                    <h3>{ExpenseType[type as keyof typeof ExpenseType]}</h3>
+                    <h3>{type}</h3>
                     <p>{overview}</p>
                     <p>{`${price} Kn`}</p>
                     <p>{date} </p>
