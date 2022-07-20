@@ -8,7 +8,7 @@
     .link{
         text-decoration: none;        
         &:visited, &:hover, &:focus {
-            color: $color-dark-grey;
+            color: $color-grey;
         }
         transition: all 0.2s ease-in-out ;
     }
@@ -22,7 +22,7 @@
     }
 
     .link.active{
-        color: $color-dark-grey;
-        border-bottom: 3px solid $color-dark-grey;
+        color: $color-red;
+        border-bottom: 3px solid $color-red;
     }
 }

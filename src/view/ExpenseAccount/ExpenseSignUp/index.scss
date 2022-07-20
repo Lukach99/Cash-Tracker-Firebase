@@ -1,7 +1,60 @@
+@import "src/styles/colors.scss";
+.form-user-section{
+    width: 30%;
+    button{
+        background-color: $color-grey;
+        color: $color-white;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 10px;
+        font-size: 16px;
+        letter-spacing: 3px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s ease-in-out;
+        &:hover{
+            background-color: $color-red;
+        }
+    }
+    p{
+        margin: 20px 0;
+    }
+}
 .form-create-user{
     display: flex;
     flex-direction: column;
+    
+    
     input{
         margin-bottom: 10px;
+        font-size: 16px;
+        padding: 5px 10px;
+        border: 1px solid $color-grey;
+        border-radius: 3px;
+        outline: none;
+
     }
+
+    label{
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input{
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            margin-right: 10px;
+        }
+    }
+
 }
+
+
+@media (max-width: 600px){
+    .form-user-section{
+        width: 80%;
+    }
+        
+    
+    }

@@ -1,4 +1,4 @@
-/* import "./index.scss" */
+import "./index.scss"
 import { useContext, useMemo, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ExpensesHttp from "../../../http/expenses.http";
@@ -51,7 +51,7 @@ const Login = () => {
         navigate("/signup")
     }
 
-    return <section>
+    return <section className="form-user-section">
         <form action="" name="test" className="form-create-user" onSubmit={handleSubmit(onSubmit)}>
             
             <input type="email" {...register("email",{ required: true })} placeholder="e-mail" />
@@ -65,7 +65,7 @@ const Login = () => {
             <p>Wrong password or e-mail! Please try again</p>
             }
 
-        <p>OR</p>
+        <p>Or create new </p>
         <button onClick={createAccHandler}>Create user account</button>
     </section>
 }

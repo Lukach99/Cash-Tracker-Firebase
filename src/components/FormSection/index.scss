@@ -28,13 +28,11 @@
             padding: 10px 0;
             font-size: 18px;
             font-weight: 600;
-            color: $color-grey;
-            background-color: $color-lighter-grey;
+            color: $color-white;
+            background-color: $color-red;
             border: 1px solid $color-grey;
             transition: background-color 0.2s ease-in-out;
-            &:hover{
-                background-color: $color-light-grey;
-            }
+            cursor: pointer;
         }
     }
     .textarea{
